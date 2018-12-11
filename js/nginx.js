@@ -1,0 +1,1 @@
+var nginx_url = "http://locahost:8082";

@@ -10,23 +10,24 @@ layui.use(['form' ,'layer'], function() {
 function login(){
     var loginName=$("#loginName").val();
     var loginPassword=$("#loginPassword").val();
-    /* var rememberMe = $("#rememberMe").val(); */
-    console.log(loginName);
+    var rememberMe = $("#rememberMe").val(); 
+    console.log(rememberMe);
 
-    var jsonStr = {"loginName":loginName,"loginPassword":loginPassword};
+    var jsonStr = {"loginName":loginName,"loginPassword":loginPassword,"rememberMe":rememberMe};
     var data=JSON.stringify(jsonStr);
     
 
     $.ajax({
         type: 'post',
-        //url: nginx_url+'/member/login/user',
-        url: 'http://localhost:8082/member/login/user',
+        url: nginx_url+'/mananger/login',
+        //url: 'http://localhost:8082/member/login',
         data: data,
         dataType: 'json',
         async: false,
         contentType:"application/json",
         success: function (result) {
-             if (result.head.status === 200) {
+            console.log(result);
+            if (result.head.status === 200) {
                 //$.cookie("loginId", result.USER.loginId);
                 window.location.href = 'home.html';
             } else{

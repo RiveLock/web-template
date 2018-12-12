@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../layui/css/layui.css" />
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!-- 头部 -->
+			<div class="layui-header">
+				<div class="layui-logo">Template</div>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href=""><img src="../../../img/login.jpg" class="layui-nav-img" /></a>
+						<dl class="layui-nav-child">
+							<!--<dd>
+								<a href="">基本资料</a>
+							</dd>-->
+							<dd>
+								<a href="" onclick="logout()">退出</a>
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+
+			<!-- 左侧 -->
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item layui-nav-itemed">
+							<a href="javascript:;">系统管理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="../system/userManager.html">用户管理</a>
+								</dd>
+								<dd>
+									<a href="">角色管理</a>
+								</dd>
+								<dd>
+									<a href="../system/permManager.html">权限管理</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item ">
+							<a href="javascript:;">基本设置</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="">银行管理</a>
+								</dd>
+								<dd>
+									<a href="">省市区管理</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- js -->
+		<script src="../../../js/nginx.js" ></script>
+		<script src="../../../js/head.js"></script>
+
+	</body>
+
+</html>

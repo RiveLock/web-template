@@ -73,15 +73,15 @@ function formSubmit(obj){
     $.ajax({
         type: "post",
         data: $("#permissionForm").serialize(),
-        url: nginx_url+"/permission/setPermission",
+        url: nginx_url+"/perm/setPermission",
         success: function (data) {
-            if (data.code == 1) {
-                layer.alert(data.msg,function(){
+            if (data.head.status === 200) {
+                layer.alert(data.head.message,function(){
                     layer.closeAll();
                     load(obj);
                 });
             } else {
-                layer.alert(data.msg);
+                layer.alert(data.head.message);
             }
         },
         error: function () {
@@ -170,14 +170,14 @@ function del(obj,id) {
         layer.confirm('您确定要删除吗？', {
             btn: ['确认','返回'] //按钮
         }, function(){
-            $.post("/permission/del",{"id":id},function(data){
-                if (data.code == 1) {
-                    layer.alert(data.msg,function(){
+            $.post(nginx_url+"/perm/del",{"id":id},function(data){
+                if (data.head.status === 200) {
+                    layer.alert(data.head.message,function(){
                         layer.closeAll();
                         load(obj);
                     });
                 } else {
-                    layer.alert(data.msg);
+                    layer.alert(data.head.message);
                 }
             });
         }, function(){

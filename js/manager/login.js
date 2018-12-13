@@ -28,7 +28,8 @@ function login(){
         success: function (result) {
             console.log(result);
             if (result.head.status === 200) {
-                //$.cookie("loginId", result.USER.loginId);
+            	console.log(result.data);
+                //$.cookie("token", result.data.token);
                 window.location.href = './home/home.html';
             } else{
                 layer.alert(result.head.message);

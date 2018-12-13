@@ -1,79 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      >
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>用户管理</title>
-    <!-- css -->
-    <link rel="stylesheet" href="../../../layui/css/layui.css" />
-</head>
-<body>
-	<div id="head"></div>
-	<div class="layui-body" style="margin: 3%">
-		<form id="userSearch" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-inline">
-                    <input id="sysUserName" name="sysUserName" autocomplete="off" class="layui-input" type="text"/>
-                </div>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                <button class="layui-btn"  lay-submit="" lay-filter="searchSubmit">提交</button>
-            </div>
-        </form>
-        <!--<hr class="layui-bg-blue"/>-->
-        <hr class="layui-bg-black"/>
-        
-        <button class="layui-btn layui-btn-normal" onclick="addUser()">开通用户</button>
+<html xmlns:th="http://www.thymeleaf.org">
 
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>用户管理</title>
+		<!-- css -->
+		<link rel="stylesheet" href="../../../layui/css/layui.css" />
+	</head>
 
-        <table id="uesrList" lay-filter="userTable"></table>
-        
-        
-         <!--添加或编辑用户-->
-    <div id="setUser" class="layer_self_wrap" style="width:500px;display:none;">
-        <form id="userForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
-            <input id="pageNum" type="hidden" name="pageNum"/>
-            <input id="id" type="hidden" name="id"/>
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-inline">
-                    <input id="username" name="sysUserName" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
-                </div>
-            </div>
-            <!--<div class="layui-form-item">
+	<body>
+		<div id="head"></div>
+		<div class="layui-body" style="margin: 3%">
+			<form id="userSearch" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+				<div class="layui-form-item">
+					<label class="layui-form-label">账号</label>
+					<div class="layui-input-inline">
+						<input id="loginName" name="loginName" autocomplete="off" class="layui-input" type="text" />
+					</div>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<button class="layui-btn" lay-submit="" lay-filter="searchSubmit">提交</button>
+				</div>
+			</form>
+			<!--<hr class="layui-bg-blue"/>-->
+			<hr class="layui-bg-black" />
+
+			<button class="layui-btn layui-btn-normal" onclick="addUser()">注册用户</button>
+
+			<table id="uesrList" lay-filter="userTable"></table>
+			<script type="text/html" id="optBar">
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    	</script>
+			
+			
+			<!--添加或编辑用户-->
+			<div id="setUser" class="layer_self_wrap" style="width:500px;display:none;">
+				<form id="userForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+					<input id="pageNum" type="hidden" name="pageNum" />
+					<input id="id" type="hidden" name="id" />
+					<div class="layui-form-item">
+						<label class="layui-form-label">登入账号</label>
+						<div class="layui-input-inline">
+							<input id="loginName" name="loginName" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户昵称</label>
+						<div class="layui-input-inline">
+							<input id="userName" name="userName" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+						</div>
+					</div>
+					<div class="layui-form-item">
                 <label class="layui-form-label">角色类型</label>
                 <div class="layui-input-inline">
                     <select name="roleId"  id="roleId" >
                     </select>
                 </div>
-            </div>-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
-                <div class="layui-input-inline">
-                    <input id="password" name="sysUserPwd" autocomplete="off" class="layui-input" type="password" placeholder="默认初始密码：123456" />
-                </div>
-                <div class="layui-form-mid layui-word-aux">请填写6位以上的密码</div>
             </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block" style="margin-left: 10px;">
-                    <button class="layui-btn"  lay-submit="" lay-filter="userSubmit">提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>
-        
-	</div>
-    
-    
-    <script src="../../../js/jquery/jquery-3.3.1.min.js" ></script>
-    <script src="../../../layui/layui.js" ></script>
-    <script src="../../../layui/lay/modules/element.js" ></script>
-    <script src="../../../js/manager/user.js" ></script>
-    <script>
-          $("#head").load("../fragment/head.html");
-    </script>
-</body>
+					<div class="layui-form-item">
+						<label class="layui-form-label">密码</label>
+						<div class="layui-input-inline">
+							<input id="loginPassword" name="loginPassword" autocomplete="off" class="layui-input" type="password"  />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block" style="margin-left: 10px;">
+							<button class="layui-btn" lay-submit="" lay-filter="userSubmit">提交</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+		<script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+		<script src="../../../layui/layui.js"></script>
+		<script src="../../../layui/lay/modules/element.js"></script>
+		<script src="../../../js/manager/user.js"></script>
+		<script>
+			$("#head").load("../fragment/head.html");
+		</script>
+	</body>
+
 </html>

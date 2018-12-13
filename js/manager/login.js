@@ -29,7 +29,7 @@ function login(){
             console.log(result);
             if (result.head.status === 200) {
                 //$.cookie("loginId", result.USER.loginId);
-                window.location.href = 'home.html';
+                window.location.href = './home/home.html';
             } else{
                 layer.alert(result.head.message);
             }

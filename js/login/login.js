@@ -14,12 +14,12 @@ layui.use(['layer', 'form', 'jquery'], function() {
 
         $.ajax({
             type: 'post',
-            //url: nginx_url + '/member/login/user',
-            url: 'http://localhost:8082/member/login/user',
+            url: nginx_url + '/member/login/user',
+            //url: 'http://localhost:8082/member/login/user',
             data: data,
             dataType: 'json',
             async: false,
-            contentType:"application/json",
+            //contentType:"application/json",
             success: function (result) {
                  if (result.head.status === 200) {
                     //$.cookie("loginId", result.USER.loginId);

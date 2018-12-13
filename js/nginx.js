@@ -1,1 +1,1 @@
-var nginx_url = "http://locahost:8082";
+let nginx_url = "http://127.0.0.1:8082";

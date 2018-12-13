@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>权限管理</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../../../layui/css/layui.css" />
+</head>
+<body>
+	<div id="head"></div>
+	<div class="layui-body" style="margin: 3%">
+		<table id="permissionList" lay-filter="permissionTable"></table>
+
+    <button class="layui-btn layui-btn-normal" onclick="add()">新增</button>
+    
+    <script type="text/html" id="optBar">
+      <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    
+    
+    <!--添加或编辑-->
+    <div id="setPermission" class="layer_self_wrap" style="width:500px;display:none;">
+        <form id="permissionForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <input id="pageNum" type="hidden" name="pageNum"/>
+            <input id="id" type="hidden" name="id"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上级菜单</label>
+                <div class="layui-input-inline">
+                    <select name="pid"  id="pid" >
+                        <option value="0">根目录</option>
+               
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称</label>
+                <div class="layui-input-inline">
+                    <input id="name" name="name" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述</label>
+                <div class="layui-input-inline">
+                    <input id="descpt" name="descpt" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单url</label>
+                <div class="layui-input-inline">
+                    <input id="url" name="url" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 10px;">
+                    <button class="layui-btn"  lay-submit="" lay-filter="permissionSubmit">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+        
+	</div>
+    
+    
+    <script src="../../../js/jquery/jquery-3.3.1.min.js" ></script>
+    <script src="../../../layui/layui.js" ></script>
+    <script src="../../../layui/lay/modules/element.js" ></script>
+    <script src="../../../js/manager/perm.js" ></script>
+    <script>
+          $("#head").load("../fragment/head.html");
+    </script>
+</body>
+</html>

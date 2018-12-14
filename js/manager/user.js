@@ -3,17 +3,23 @@
  */
 var pageCurr;
 var form;
+var token = $.cookie("token");
 $(function() {
 	layui.use('table', function() {
 		var table = layui.table;
 		form = layui.form;
-
+		
+		
 		tableIns = table.render({
 			elem: '#uesrList',
 			url: nginx_url + '/user/getUserList',
+			/*headers:{token :token},*/
 			method: 'post', //默认：get请求
 			cellMinWidth: 80,
 			page: true,
+			beforeSend: function(request) {
+				request.setRequestHeader("token", token);
+			},
 			request: {
 				pageName: 'pageNum', //页码的参数名称，默认：pageNum
 				limitName: 'pageSize' //每页数据量的参数名，默认：pageSize
